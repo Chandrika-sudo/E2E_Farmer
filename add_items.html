@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Items - E2E</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FFC107;
+            --light: #F5F5F5;
+            --dark: #212121;
+            --gray: #757575;
+            --white: #FFFFFF;
+            --danger: #F44336;
+            --info: #2196F3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: var(--primary);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
+            border-bottom: 2px solid white;
+        }
+
+        .items-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .item-form {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Modern Button Styles */
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-info {
+            background-color: var(--info);
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* New Styles for Guidelines */
+        .info-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card ul {
+            padding-left: 20px;
+        }
+
+        .info-card li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .info-card li:before {
+            content: "•";
+            color: var(--primary);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .step.active .step-number {
+            background-color: var(--primary-dark);
+        }
+
+        .step-title {
+            font-size: 14px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .step-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e0e0e0;
+            z-index: 0;
+        }
+
+        .step-line-progress {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: 2px;
+            background-color: var(--primary);
+            z-index: 1;
+            width: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be added by JavaScript -->
+
+    <div class="container">
+        <div class="items-container">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Selling Guidelines</h3>
+                <p>Please follow these rules when listing your farm products:</p>
+                <ul>
+                    <li>All products must be accurately described with correct measurements</li>
+                    <li>Organic products must be certified to be labeled as such</li>
+                    <li>Provide clear photos of your actual products (not stock images)</li>
+                    <li>Prices must be competitive with local market rates</li>
+                    <li>Be honest about product availability and delivery timelines</li>
+                    <li>Follow all local agricultural regulations and safety standards</li>
+                    <li>Clearly state any special storage requirements</li>
+                    <li>Update availability promptly when items are sold out</li>
+                </ul>
+            </div>
+
+            <div class="step-indicator">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Product Details</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Review</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Confirmation</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-line-progress"></div>
+            </div>
+
+            <h2><i class="fas fa-plus-circle"></i> Add Items</h2>
+            <div id="itemForms">
+                <!-- Item forms will be dynamically added here -->
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-info" onclick="addItemForm()">
+                    <i class="fas fa-plus"></i> Add Another Item
+                </button>
+                <button class="btn btn-primary" onclick="submitItems()">
+                    <i class="fas fa-check"></i> Submit Items
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add navigation bar dynamically
+        function addNavigationBar() {
+            const email = new URLSearchParams(window.location.search).get("email");
+            if (!email) {
+                console.error("No email parameter found");
+                window.location.href = "signin.html";
+                return;
+            }
+
+            const currentPage = window.location.pathname.split('/').pop() || 'add_items.html';
+            
+            const navBar = document.createElement('nav');
+            navBar.className = 'navbar';
+            navBar.innerHTML = `
+                <div class="nav-container">
+                    <a href="dashboard.html?email=${email}" class="nav-logo">
+                        <i class="fas fa-leaf"></i> FAR-MER
+                    </a>
+                    <div class="nav-links">
+                        <a href="dashboard.html?email=${email}" 
+                           class="nav-link ${currentPage === 'dashboard.html' ? 'active' : ''}">
+                           Dashboard
+                        </a>
+                        <a href="items.html?email=${email}" 
+                           class="nav-link ${currentPage === 'items.html' ? 'active' : ''}">
+                           My Products
+                        </a>
+                        <a href="explore.html?email=${email}" 
+                           class="nav-link ${currentPage === 'explore.html' ? 'active' : ''}">
+                           Explore
+                        </a>
+                        <a href="aboutus.html" 
+                           class="nav-link ${currentPage === 'aboutus.html' ? 'active' : ''}">
+                           About Us
+                        </a>
+                        <a href="blogs.html" 
+                           class="nav-link ${currentPage === 'blogs.html' ? 'active' : ''}">
+                           Blogs
+                        </a>
+                        <a href="signin.html" class="nav-link" onclick="logout()">
+                           Sign Out
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(navBar, document.body.firstChild);
+
+            // Add click event listeners to navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === 'signin.html') {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        logout();
+                    });
+                }
+            });
+        }
+
+        function logout() {
+            window.location.href = "signin.html";
+        }
+
+        let itemCount = 0;
+        const email = new URLSearchParams(window.location.search).get("email");
+
+        // Function to add a new item form
+        function addItemForm() {
+            itemCount++;
+            const itemForm = document.createElement("div");
+            itemForm.className = "item-form";
+            itemForm.innerHTML = `
+                <h4>Item ${itemCount}</h4>
+                <div class="form-group">
+                    <label for="itemName${itemCount}">Product Name</label>
+                    <input type="text" id="itemName${itemCount}" placeholder="e.g. Organic Wheat" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemQuantity${itemCount}">Quantity (kg)</label>
+                    <input type="number" id="itemQuantity${itemCount}" placeholder="e.g. 100" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemPrice${itemCount}">Price (₹/kg)</label>
+                    <input type="number" id="itemPrice${itemCount}" placeholder="e.g. 25" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription${itemCount}">Description</label>
+                    <textarea id="itemDescription${itemCount}" placeholder="Special notes about this product" rows="3"></textarea>
+                </div>
+            `;
+            document.getElementById("itemForms").appendChild(itemForm);
+        }
+
+        // Function to submit all items
+        async function submitItems() {
+            const items = [];
+            for (let i = 1; i <= itemCount; i++) {
+                const itemName = document.getElementById(`itemName${i}`)?.value;
+                const itemQuantity = document.getElementById(`itemQuantity${i}`)?.value;
+                const itemPrice = document.getElementById(`itemPrice${i}`)?.value;
+                const itemDescription = document.getElementById(`itemDescription${i}`)?.value;
+
+                if (itemName && itemQuantity && itemPrice) {
+                    items.push({
+                        name: itemName,
+                        quantity: parseInt(itemQuantity),
+                        price: parseFloat(itemPrice),
+                        description: itemDescription || ""
+                    });
+                }
+            }
+
+            if (items.length === 0) {
+                alert("Please add at least one item.");
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5000/items', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, items }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                alert(result.message || "Items added successfully!");
+                window.location.href = `items.html?email=${email}`;
+            } catch (error) {
+                console.error("Error submitting items:", error);
+                alert("An error occurred while submitting items.");
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            addNavigationBar();
+            addItemForm(); // Add first item form by default
+        });
+    </script>
+</body>
+</html>

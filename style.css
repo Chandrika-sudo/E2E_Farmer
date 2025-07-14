@@ -1,0 +1,276 @@
+/* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url("image/back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgba(39, 39, 39, 0.4);
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: linear-gradient(rgba(39, 39, 39, 0.6), transparent);
+    z-index: 100;
+}
+
+.nav-logo p {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu ul li {
+    margin: 0 15px;
+}
+
+.nav-menu ul li .link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    padding-bottom: 15px;
+}
+
+.link:hover,
+.active {
+    border-bottom: 2px solid #fff;
+}
+
+.nav-button .btn {
+    width: 130px;
+    height: 40px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.btn.white-btn {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.btn.white-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-menu-btn {
+    display: none;
+}
+
+.form-box {
+    position: relative;
+    width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.login-container,
+.register-container {
+    width: 100%;
+}
+
+.top {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.top span {
+    color: #fff;
+    font-size: 14px;
+}
+
+.top span a {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.top span a:hover {
+    text-decoration: underline;
+}
+
+header {
+    color: #fff;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.two-forms {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+
+.input-field:hover,
+.input-field:focus {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+.submit {
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.submit:hover {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.two-col {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.two-col .one {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.two-col label a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.two-col label a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 786px) {
+    .nav-button {
+        display: none;
+    }
+
+    .nav-menu.responsive {
+        top: 100px;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: -800px;
+        display: flex;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        width: 100%;
+        height: 90vh;
+        backdrop-filter: blur(20px);
+        transition: .3s;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-menu-btn {
+        display: block;
+    }
+
+    .nav-menu-btn i {
+        font-size: 25px;
+        color: #fff;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .nav-menu-btn i:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .form-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .register-container,
+    .login-container {
+        padding: 0 10px;
+    }
+}

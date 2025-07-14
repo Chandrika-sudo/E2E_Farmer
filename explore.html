@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore AI Features | E2E - Farming</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FFC107;
+            --light: #F5F5F5;
+            --dark: #212121;
+            --gray: #757575;
+            --white: #FFFFFF;
+            --danger: #F44336;
+            --info: #2196F3;
+            --glass: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: var(--primary);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
+            border-bottom: 2px solid white;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        /* Glassmorphism Cards */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Modern Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-explore {
+            background: linear-gradient(135deg, var(--info) 0%, #1976D2 100%);
+            color: white;
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* AI Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+        }
+
+        .feature-content {
+            padding: 25px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .feature-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .feature-steps {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: none;
+        }
+
+        .feature-steps.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .feature-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .toggle-steps {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .toggle-steps:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be added by JavaScript -->
+
+    <div class="container">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">
+                <i class="fas fa-brain"></i> AI Farming Features
+            </h1>
+            <div class="user-badge">
+                <img src="https://th.bing.com/th/id/OIP.eGGGhfEd-TlsHnluMjTJeQAAAA?w=126&h=104&c=7&bgcl=afb637&r=0&o=6&dpr=1.3&pid=13.1" alt="User" class="user-avatar">
+                <span id="userGreeting">Welcome, User</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-lightbulb"></i> Smart Farming Solutions
+                </h2>
+            </div>
+            <p style="color: var(--gray); line-height: 1.7; margin-bottom: 20px;">
+                Leverage our advanced AI models to optimize your farming operations. Each tool is designed to provide 
+                actionable insights based on your specific farm conditions and requirements.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Crop Recommendation Card -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Crop Recommendation</h3>
+                    <p class="feature-description">
+                        This feature looks at your soil, weather, and location to suggest the most suitable crop for your farm. 
+                        It helps you choose what to grow so you get better yield and income with less risk.
+                    </p>
+                    
+                    <div class="feature-steps" id="cropSteps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Gather Your Soil Data</h4>
+                                <p class="step-description">
+                                    Collect soil test results including N, P, K levels, pH, humidity, and temperature.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Input Your Data</h4>
+                                <p class="step-description">
+                                    Enter your soil parameters into the model along with your location and rainfall data.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Receive Recommendations</h4>
+                                <p class="step-description">
+                                    The model will suggest the top 3 most suitable crops for your conditions.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Plan Your Planting</h4>
+                                <p class="step-description">
+                                    Use the recommendations to plan your planting schedule and resource allocation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-actions">
+                        <button class="toggle-steps" onclick="toggleSteps('cropSteps')">
+                            <i class="fas fa-question-circle"></i> How to Use
+                        </button>
+                        <button class="btn btn-primary" onclick="openModelLink('https://crop-recommendationml.onrender.com/')">
+                            <i class="fas fa-external-link-alt"></i> Open Tool
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fertilizer Recommendation Card -->
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Fertilizer Recommendation</h3>
+                    <p class="feature-description">
+                        By checking your soil's nutrients and the crop you want to grow, this feature tells you which type 
+                        of fertilizer to use and in what amount. It ensures your crops get the right nutrients without wasting resources.
+                    </p>
+                    
+                    <div class="feature-steps" id="fertilizerSteps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Identify Your Crop</h4>
+                                <p class="step-description">
+                                    Select the crop you're currently growing or planning to grow.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Test Your Soil</h4>
+                                <p class="step-description">
+                                    Get your soil tested for N, P, K levels, temperature, humidity, and moisture.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Input Parameters</h4>
+                                <p class="step-description">
+                                    Enter all required parameters into the fertilizer recommendation tool.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Apply Recommendations</h4>
+                                <p class="step-description">
+                                    Use the suggested fertilizer type and quantity for optimal growth.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-actions">
+                        <button class="toggle-steps" onclick="toggleSteps('fertilizerSteps')">
+                            <i class="fas fa-question-circle"></i> How to Use
+                        </button>
+                        <button class="btn btn-primary" onclick="openModelLink('https://fertilizer-recommendation-ml.onrender.com/')">
+                            <i class="fas fa-external-link-alt"></i> Open Tool
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Price Prediction Card -->
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Market Price Prediction</h3>
+                    <p class="feature-description">
+                        This feature gives you an idea of the expected prices for your crops in the market by looking at 
+                        previous trends and seasons. It helps you decide the right time and place to sell your harvest for better profits.
+                    </p>
+                    
+                    <div class="feature-steps" id="marketSteps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Select Your Crop</h4>
+                                <p class="step-description">
+                                    Choose the crop you want to analyze from the available options.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Choose Your Market</h4>
+                                <p class="step-description">
+                                    Select the target market or region for price analysis.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Set Time Frame</h4>
+                                <p class="step-description">
+                                    Specify the time period you want to analyze (next week, month, season).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Plan Your Sales</h4>
+                                <p class="step-description">
+                                    Use the price predictions to determine the optimal time to sell your produce.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-actions">
+                        <button class="toggle-steps" onclick="toggleSteps('marketSteps')">
+                            <i class="fas fa-question-circle"></i> How to Use
+                        </button>
+                        <button class="btn btn-primary" onclick="openModelLink('https://farmer-market-price-ml.onrender.com/')">
+                            <i class="fas fa-external-link-alt"></i> Open Tool
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Irrigation Suggestion Card -->
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Irrigation Type Recommendation</h3>
+                    <p class="feature-description">
+                        Based on your soil type, crop, and local weather, this feature suggests the best way to water your field—whether 
+                        it's drip, sprinkler, or traditional methods. It helps save water, reduce costs, and improve crop growth.
+                    </p>
+                    
+                    <div class="feature-steps" id="irrigationSteps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Enter Crop Details</h4>
+                                <p class="step-description">
+                                    Specify the crop type, growth stage, and planting date.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Input Soil Data</h4>
+                                <p class="step-description">
+                                    Provide current soil moisture levels and soil type.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Add Weather Info</h4>
+                                <p class="step-description">
+                                    Enter recent rainfall and temperature data or allow location access.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Implement Plan</h4>
+                                <p class="step-description">
+                                    Follow the irrigation schedule to optimize water use and crop health.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-actions">
+                        <button class="toggle-steps" onclick="toggleSteps('irrigationSteps')">
+                            <i class="fas fa-question-circle"></i> How to Use
+                        </button>
+                        <button class="btn btn-primary" onclick="openModelLink('https://farmer-irrigation-suggestion-ml.onrender.com/')">
+                            <i class="fas fa-external-link-alt"></i> Open Tool
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Info Modal -->
+    <div class="modal" id="modelInfoModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalModelTitle">Model Information</h3>
+            </div>
+            <div class="modal-body" id="modalModelBody">
+                <!-- Content will be inserted here dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Close</button>
+                <button class="btn btn-primary" id="modalOpenButton" onclick="openCurrentModel()">
+                    <i class="fas fa-external-link-alt"></i> Open Model
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add navigation bar dynamically
+        function addNavigationBar() {
+            const email = new URLSearchParams(window.location.search).get("email");
+            if (!email) {
+                console.error("No email parameter found");
+                window.location.href = "signin.html";
+                return;
+            }
+
+            const currentPage = window.location.pathname.split('/').pop() || 'explore.html';
+            
+            const navBar = document.createElement('nav');
+            navBar.className = 'navbar';
+            navBar.innerHTML = `
+                <div class="nav-container">
+                    <a href="dashboard.html?email=${email}" class="nav-logo">
+                        <i class="fas fa-leaf"></i> FAR-MER
+                    </a>
+                    <div class="nav-links">
+                        <a href="dashboard.html?email=${email}" 
+                           class="nav-link ${currentPage === 'dashboard.html' ? 'active' : ''}">
+                           Dashboard
+                        </a>
+                        <a href="items.html?email=${email}" 
+                           class="nav-link ${currentPage === 'items.html' ? 'active' : ''}">
+                           My Products
+                        </a>
+                        <a href="explore.html?email=${email}" 
+                           class="nav-link ${currentPage === 'explore.html' ? 'active' : ''}">
+                           Explore
+                        </a>
+                        <a href="aboutus.html?email=${email}" 
+                           class="nav-link ${currentPage === 'aboutus.html' ? 'active' : ''}">
+                           About Us
+                        </a>
+                        <a href="blogs.html?email=${email}" 
+                           class="nav-link ${currentPage === 'blogs.html' ? 'active' : ''}">
+                           Blogs
+                        </a>
+                        <a href="signin.html" class="nav-link" onclick="logout()">
+                           Sign Out
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(navBar, document.body.firstChild);
+
+            // Add click event listeners to navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (link.getAttribute('href') === 'signin.html') {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        logout();
+                    });
+                }
+            });
+        }
+
+        // Fetch farmer data from MongoDB
+        async function fetchFarmerData() {
+            const email = new URLSearchParams(window.location.search).get("email");
+            
+            if (!email) {
+                console.error("No email parameter found");
+                window.location.href = "signin.html";
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5000/dashboard/${email}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+
+                // Update user greeting
+                document.getElementById("userGreeting").textContent = `Welcome, ${data.firstName || 'User'}`;
+            } catch (error) {
+                console.error("Error fetching farmer data:", error);
+            }
+        }
+
+        // Toggle steps visibility
+        function toggleSteps(stepId) {
+            const steps = document.getElementById(stepId);
+            steps.classList.toggle('show');
+            
+            // Update button text
+            const button = steps.previousElementSibling.querySelector('.toggle-steps');
+            if (steps.classList.contains('show')) {
+                button.innerHTML = '<i class="fas fa-times-circle"></i> Hide Steps';
+            } else {
+                button.innerHTML = '<i class="fas fa-question-circle"></i> How to Use';
+            }
+        }
+
+        // Open model link in new tab
+        function openModelLink(url) {
+            window.open(url, '_blank');
+        }
+
+        // Modal functions
+        function closeModal() {
+            document.getElementById("modelInfoModal").style.display = "none";
+        }
+
+        // Logout function
+        function logout() {
+            // Here you would typically clear session/token
+            window.location.href = "signin.html";
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            addNavigationBar();
+            fetchFarmerData();
+            
+            // Close modal when clicking outside
+            document.getElementById("modelInfoModal").addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

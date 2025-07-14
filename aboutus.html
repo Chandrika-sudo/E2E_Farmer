@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FAR-MER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --primary-light: rgba(76, 175, 80, 0.1);
+            --secondary: #FFC107;
+            --light: #F5F5F5;
+            --dark: #212121;
+            --gray: #757575;
+            --white: #FFFFFF;
+            --danger: #F44336;
+            --info: #2196F3;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background: transparent;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
+            border-bottom: 2px solid white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 60px;
+            background: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+            padding: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .btn-hero {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-hero:hover {
+            background-color: rgba(255,255,255,0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .mission-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .mission-content {
+            flex: 1;
+        }
+
+        .mission-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .mission-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .mission-image {
+            flex: 1;
+            position: relative;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.5s;
+        }
+
+        .mission-image:hover {
+            transform: scale(1.02);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(76, 175, 80, 0.05) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-contact h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            color: var(--gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .footer-contact i {
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .mission-container {
+                flex-direction: column;
+            }
+            
+            .mission-image {
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 80vh;
+                min-height: 500px;
+            }
+            
+            .hero-content {
+                padding: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be added by JavaScript -->
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Empowering Farmers, Enriching Lives</h1>
+            <p>FAR-MER is revolutionizing agriculture by connecting farmers directly with consumers using cutting-edge technology and machine learning to create a fair, transparent, and sustainable food ecosystem.</p>
+            <a href="#mission" class="btn-hero">Discover Our Mission</a>
+        </div>
+    </div>
+
+    <section class="mission-section" id="mission">
+        <div class="mission-container">
+            <div class="mission-content animate-on-scroll">
+                <h2>Our Mission</h2>
+                <p>We're on a mission to bridge the gap between farmers and consumers by eliminating intermediaries and leveraging technology to create a more equitable agricultural marketplace.</p>
+                <p>Our platform combines machine learning with practical farming solutions to empower farmers with data-driven insights while providing consumers with fresh, affordable produce directly from the source.</p>
+                <p>By integrating crop prediction, soil analysis, and market forecasting, we're transforming traditional farming practices into a modern, sustainable ecosystem.</p>
+            </div>
+            <div class="mission-image animate-on-scroll">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Farmers harvesting crops">
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="section-header animate-on-scroll">
+            <h2>Our Innovative Approach</h2>
+            <p>We combine agricultural expertise with cutting-edge technology to deliver comprehensive solutions for modern farming challenges.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Crop Prediction</h3>
+                <p>Our ML models analyze soil conditions, weather patterns, and market demand to recommend the most profitable crops for each farming season.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="feature-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h3>Soil Analysis</h3>
+                <p>Farmers can upload soil images for instant analysis of soil type and quality, receiving tailored recommendations for improvement.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Market Forecasting</h3>
+                <p>Advanced algorithms predict market trends and prices, helping farmers make informed decisions about when and what to sell.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" style="transition-delay: 0.3s">
+                <div class="feature-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Disease Detection</h3>
+                <p>Image recognition technology identifies crop diseases early, suggesting appropriate remedies to minimize losses.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" style="transition-delay: 0.4s">
+                <div class="feature-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <h3>Resource Optimization</h3>
+                <p>Connects farmers with affordable machinery and resources in their locality, reducing operational costs.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" style="transition-delay: 0.5s">
+                <div class="feature-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>Direct Marketplace</h3>
+                <p>A transparent e-commerce platform that eliminates middlemen, ensuring fair prices for both farmers and consumers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item animate-on-scroll">
+                <div class="stat-number" id="farmers-count">5000+</div>
+                <div class="stat-label">Farmers Empowered</div>
+            </div>
+            <div class="stat-item animate-on-scroll" style="transition-delay: 0.1s">
+                <div class="stat-number" id="crops-analyzed">120+</div>
+                <div class="stat-label">Crop Varieties Analyzed</div>
+            </div>
+            <div class="stat-item animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="stat-number" id="transactions">1M+</div>
+                <div class="stat-label">Successful Transactions</div>
+            </div>
+            <div class="stat-item animate-on-scroll" style="transition-delay: 0.3s">
+                <div class="stat-number" id="savings">30%</div>
+                <div class="stat-label">Average Savings for Consumers</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    FAR-MER
+                </div>
+                <p>Empowering farmers and consumers through technology for a more sustainable and equitable agricultural future.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="items.html">My Products</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="farming-guides.html">Farming Guides</a></li>
+                    <li><a href="market-trends.html">Market Trends</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Farm Tech Park, Bangalore, India</p>
+                <p><i class="fas fa-phone-alt"></i> +91 9876543210</p>
+                <p><i class="fas fa-envelope"></i> info@far-mer.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 FAR-MER. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add navigation bar dynamically
+        function addNavigationBar() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const email = new URLSearchParams(window.location.search).get("email");
+            
+            const navBar = document.createElement('nav');
+            navBar.className = 'navbar';
+            navBar.innerHTML = `
+                <div class="nav-container">
+                    <a href="dashboard.html${email ? '?email=' + email : ''}" class="nav-logo">
+                        <i class="fas fa-leaf"></i> FAR-MER
+                    </a>
+                    <div class="nav-links">
+                        <a href="dashboard.html${email ? '?email=' + email : ''}" 
+                           class="nav-link ${currentPage === 'dashboard.html' ? 'active' : ''}">
+                           Dashboard
+                        </a>
+                        <a href="items.html${email ? '?email=' + email : ''}" 
+                           class="nav-link ${currentPage === 'items.html' ? 'active' : ''}">
+                           My Products
+                        </a>
+                        <a href="explore.html${email ? '?email=' + email : ''}" 
+                           class="nav-link ${currentPage === 'explore.html' ? 'active' : ''}">
+                           Explore
+                        </a>
+                        <a href="aboutus.html${email ? '?email=' + email : ''}" 
+                           class="nav-link ${currentPage === 'aboutus.html' ? 'active' : ''}">
+                           About Us
+                        </a>
+                        <a href="blogs.html${email ? '?email=' + email : ''}" 
+                           class="nav-link ${currentPage === 'blogs.html' ? 'active' : ''}">
+                           Blogs
+                        </a>
+                        ${email ? `<a href="signin.html" class="nav-link" onclick="logout()">
+                           Sign Out
+                        </a>` : `<a href="signin.html" class="nav-link">
+                           Sign In
+                        </a>`}
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(navBar, document.body.firstChild);
+        }
+
+        function logout() {
+            // Clear any session data if needed
+            localStorage.removeItem('authToken');
+            sessionStorage.removeItem('userEmail');
+            window.location.href = "signin.html";
+            return false;
+        }
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            const heroSection = document.querySelector('.hero-section');
+            const heroHeight = heroSection.offsetHeight;
+            
+            if (window.scrollY > heroHeight) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            addNavigationBar();
+            
+            // Add scroll event listener for animations
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Add click event listener for sign-out link
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.nav-link') && e.target.closest('.nav-link').getAttribute('href') === 'signin.html') {
+                    e.preventDefault();
+                    logout();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

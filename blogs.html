@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future of Farming | FAR-MER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #FFC107;
+            --light: #F5F5F5;
+            --dark: #212121;
+            --gray: #757575;
+            --white: #FFFFFF;
+            --danger: #F44336;
+            --info: #2196F3;
+            --glass: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background-color: var(--primary);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 0.9;
+            border-bottom: 2px solid white;
+        }
+
+        /* Blog Header */
+        .blog-header {
+            text-align: center;
+            padding: 60px 0 40px;
+            background: linear-gradient(#03cd0399, rgba(0, 48, 14, 0.6)); /*url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'*/
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .blog-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Blog Content */
+        .blog-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .blog-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Article Styles */
+        .article {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .article h2 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .article h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .article p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .article img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .article img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Future Farming Cards */
+        .future-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .future-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .future-card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .future-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .future-card:hover .future-card-image img {
+            transform: scale(1.1);
+        }
+
+        .future-card-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .future-card-content {
+            padding: 25px;
+        }
+
+        .future-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .future-card p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .future-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Interactive Elements */
+        .interactive-element {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-element h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .interactive-element p {
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .interactive-element .btn {
+            position: relative;
+            z-index: 1;
+        }
+
+        .interactive-element:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sidebar-widget h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: #f0f0f0;
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .newsletter-form input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 40px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 7px;
+            height: 100%;
+            width: 2px;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--secondary);
+            border: 3px solid var(--primary);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-content h4 {
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Quote */
+        .quote {
+            border-left: 4px solid var(--secondary);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+
+        .quote-author {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .blog-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .blog-header p {
+                font-size: 1rem;
+            }
+            
+            .article {
+                padding: 25px;
+            }
+            
+            .article h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .parallax:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .parallax h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Quiz */
+        .quiz-container {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: #f0f0f0;
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .quiz-result.correct {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--primary-dark);
+            display: block;
+        }
+
+        .quiz-result.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            color: var(--danger);
+            display: block;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--gray);
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be added by JavaScript -->
+
+    <div class="container">
+        <div class="blog-header">
+            <h1>The Future of Farming: 10 Revolutionary Technologies</h1>
+            <p>Exploring the cutting-edge innovations that will transform agriculture in the coming decades</p>
+            <div class="blog-meta">
+                <span><i class="fas fa-user"></i> By FAR-MER Team</span>
+                <span><i class="fas fa-calendar-alt"></i> June 15, 2023</span>
+                <span><i class="fas fa-clock"></i> 10 min read</span>
+            </div>
+        </div>
+
+        <div class="blog-content">
+            <main>
+                <article class="article fade-in">
+                    <p>Agriculture stands on the brink of a technological revolution that will fundamentally change how we grow our food. As the global population approaches 10 billion by 2050, these innovations aren't just exciting—they're essential for feeding our planet sustainably. Let's explore the 10 most promising future farming technologies that are reshaping agriculture.</p>
+                    
+                    <div class="interactive-element">
+                        <h3>Which future farming technology excites you most?</h3>
+                        <p>Take our quick poll and see how your interest compares with other farmers worldwide!</p>
+                        <button class="btn btn-primary" id="takePollBtn">
+                            <i class="fas fa-poll"></i> Take the Poll
+                        </button>
+                    </div>
+
+                    <!-- Future Farming Technology 1 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.1s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vertical Farming">
+                            <div class="future-card-tag">Urban Agriculture</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>1. Vertical Farming</h3>
+                            <p>Vertical farming represents a radical shift in agricultural production, moving crops into multi-story, indoor facilities where every aspect of the environment is precisely controlled. These high-tech farms use hydroponic, aeroponic, or aquaponic systems to grow plants without soil, stacking them vertically to maximize space efficiency—a single acre of vertical farming can produce the equivalent of 10-20 acres of traditional farmland.</p>
+                            <p>The benefits are substantial: 95% less water usage than conventional farming, year-round production unaffected by external weather conditions, and elimination of pesticides since the controlled environment prevents pest infestations. Companies like AeroFarms and Plenty are leading this revolution, with some facilities producing greens at a rate 390 times more productive per square foot than traditional fields.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> Market growth: 25% CAGR (2023-2030)</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 2 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.2s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Precision Agriculture">
+                            <div class="future-card-tag">Smart Farming</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>2. Precision Agriculture with AI</h3>
+                            <p>Precision agriculture powered by artificial intelligence is transforming farms into data-driven operations. Advanced sensors collect real-time data on soil moisture, nutrient levels, and plant health, while AI algorithms process this information to make precise recommendations about when to water, fertilize, or harvest. Machine learning models can predict pest outbreaks days before they become visible to the human eye, allowing for targeted interventions.</p>
+                            <p>John Deere's See & Spray technology exemplifies this approach, using computer vision to identify weeds among crops and spray herbicide only where needed, reducing chemical use by up to 90%. Similarly, startups like Taranis employ high-resolution aerial imagery and AI to detect early signs of disease at the individual plant level.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> Market size: $12.9B by 2027</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 3 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.3s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Agricultural Robots">
+                            <div class="future-card-tag">Automation</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>3. Autonomous Farm Robots</h3>
+                            <p>The agricultural robotics market is booming with innovations designed to address labor shortages and increase efficiency. Small, specialized robots are taking over repetitive tasks: Tertill's solar-powered weeding robot roams vegetable gardens eliminating weeds, while FarmWise's AI-powered robots can weed a field with millimeter precision. Harvest robots like those from Abundant Robotics use vacuum arms to pick apples without bruising, operating 24/7 during harvest season.</p>
+                            <p>Perhaps most impressively, robotic milking systems have transformed dairy farming. These automated milking parlors allow cows to be milked on demand, increasing yields by 10-15% while improving animal welfare. The systems monitor each cow's health indicators and can detect early signs of mastitis or other issues.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> 50,000+ ag robots deployed worldwide</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Quiz -->
+                    <div class="quiz-container">
+                        <h3><i class="fas fa-question-circle"></i> Future Farming Quiz</h3>
+                        <p>Test your knowledge about these emerging agricultural technologies!</p>
+                        
+                        <div class="quiz-question">What percentage of water can vertical farming save compared to traditional agriculture?</div>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="true">Up to 95%</div>
+                            <div class="quiz-option">About 50%</div>
+                            <div class="quiz-option">25-30%</div>
+                            <div class="quiz-option">No significant savings</div>
+                        </div>
+                        
+                        <div class="quiz-result"></div>
+                    </div>
+
+                    <!-- Future Farming Technology 4 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.4s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Gene Editing">
+                            <div class="future-card-tag">Biotech</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>4. CRISPR and Gene Editing</h3>
+                            <p>CRISPR gene editing is revolutionizing crop development by enabling precise modifications to plant DNA without introducing foreign genes (as in traditional GMOs). Scientists have used CRISPR to create mushrooms that don't brown, wheat with reduced gluten content, and tomatoes that flower and ripen weeks earlier than conventional varieties. The technology dramatically accelerates breeding timelines—what once took decades can now be achieved in years or even months.</p>
+                            <p>Perhaps most impactful are drought-resistant crops being developed through gene editing. Researchers at the University of California have created rice varieties that can survive drought conditions by editing just a few key genes, potentially safeguarding food supplies in climate-vulnerable regions.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> 100+ CRISPR-edited crops in development</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 5 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.5s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Drone Technology">
+                            <div class="future-card-tag">Aerial Tech</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>5. Advanced Drone Technology</h3>
+                            <p>Agricultural drones have evolved far beyond simple aerial photography. Modern ag-drones equipped with multispectral sensors can create detailed NDVI (Normalized Difference Vegetation Index) maps that reveal plant health invisible to the naked eye. Some drones now carry miniature laboratories that can analyze plant sap mid-flight to detect nutrient deficiencies.</p>
+                            <p>DroneSeed has developed heavy-lift drones that can replant forests by firing seed pods into the ground at precise locations, while other companies use swarms of drones to pollinate crops—a potential solution to colony collapse disorder affecting honeybees. The latest innovation comes from drones that can perform selective harvesting, using computer vision to identify ripe fruits and gently pluck them without damaging the plant.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> 30% of farms to use drones by 2025</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parallax Section -->
+                    <div class="parallax" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="parallax-content">
+                            <h2>The Agricultural Revolution is Here</h2>
+                            <p>These technologies aren't just concepts—they're being implemented on farms worldwide today, increasing yields while reducing environmental impact.</p>
+                            <a href="#" class="btn btn-primary">Learn How to Adopt These Technologies</a>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 6 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.6s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blockchain in Agriculture">
+                            <div class="future-card-tag">Food Traceability</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>6. Blockchain for Food Traceability</h3>
+                            <p>Blockchain technology is bringing unprecedented transparency to food supply chains. Walmart's blockchain system can trace the origin of mangoes in seconds—a process that previously took nearly a week. This capability becomes crucial during foodborne illness outbreaks, allowing precise identification of contaminated batches rather than destroying entire shipments.</p>
+                            <p>Startups like ripe.io are creating "digital twins" of food products that record every step from farm to fork, including growing conditions, harvest dates, transportation temperatures, and more. Consumers can scan QR codes to access this rich history, building trust in food sources and validating sustainability claims.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> 20% of top food companies adopting by 2025</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 7 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.7s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Alternative Proteins">
+                            <div class="future-card-tag">Food Innovation</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>7. Alternative Protein Production</h3>
+                            <p>The alternative protein revolution is reshaping agriculture's future. Beyond plant-based meats, cellular agriculture grows real animal protein from cells in bioreactors—Memphis Meats (now UPSIDE Foods) produced the first lab-grown meatball in 2016 at a cost of $18,000 per pound; today, costs have dropped to about $11 per pound and continue falling.</p>
+                            <p>Precision fermentation is another groundbreaking approach. Companies like Perfect Day use genetically modified microbes to produce dairy-identical proteins without cows. This process uses 98% less water and 91% less land than conventional dairy farming while eliminating methane emissions. The global alternative protein market is projected to reach $290 billion by 2035, potentially displacing 10% of conventional meat sales.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> $3.1B invested in 2022 alone</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 8 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.8s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="IoT in Agriculture">
+                            <div class="future-card-tag">Connected Farming</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>8. Internet of Things (IoT) in Agriculture</h3>
+                            <p>The agricultural IoT market is exploding with smart devices that monitor and automate every aspect of farming. Smart soil sensors like those from CropX provide real-time moisture data at different root depths, while connected irrigation systems can automatically adjust water delivery based on weather forecasts and plant needs.</p>
+                            <p>Livestock monitoring has seen particularly dramatic IoT innovations. Smart collars track cattle health indicators like rumination activity (a key health metric), while ear tags monitor body temperature to detect illness early. Some dairy farms now use "connected hoof baths" that only activate when sensors detect a cow passing through, saving 90% of disinfectant solution compared to constantly running baths.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> 75M agricultural IoT devices by 2025</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 9 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 0.9s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Regenerative Agriculture">
+                            <div class="future-card-tag">Sustainable Farming</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>9. Regenerative Agriculture Techniques</h3>
+                            <p>Regenerative agriculture represents a paradigm shift from conventional practices, focusing on rebuilding soil organic matter and restoring degraded soil biodiversity. Techniques like no-till farming, cover cropping, and diverse crop rotations can sequester up to 3 tons of carbon per acre annually while improving water retention and reducing erosion.</p>
+                            <p>Innovative approaches include silvopasture (integrating trees with livestock grazing), which can increase farm productivity by 30-50%, and biochar—a charcoal-like substance that improves soil fertility for centuries. Major food companies like General Mills and Danone are investing heavily in regenerative agriculture, with General Mills committing to advance these practices on 1 million acres by 2030.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> Could sequester 100% of CO2 emissions</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Farming Technology 10 -->
+                    <div class="future-card slide-in-left" style="animation-delay: 1s;">
+                        <div class="future-card-image">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="3D Food Printing">
+                            <div class="future-card-tag">Food Tech</div>
+                        </div>
+                        <div class="future-card-content">
+                            <h3>10. 3D Food Printing</h3>
+                            <p>3D food printing is emerging as a solution for personalized nutrition and sustainable food production. Barcelona-based startup Novameat has developed plant-based steak alternatives with realistic muscle texture using micro-extrusion 3D printing. NASA has funded research into 3D-printed food for long-duration space missions, while hospitals are exploring printed meals tailored to patients' specific nutritional needs.</p>
+                            <p>The technology also addresses food waste by transforming byproducts into appealing foods—for example, printing "ugly" fruits and vegetables into aesthetically pleasing shapes or creating nutritious foods from crop residues. As printers become faster and ingredients more sophisticated, 3D food printing could decentralize parts of food production, allowing customized meals printed on demand in homes, restaurants, or community centers.</p>
+                            <div class="future-card-footer">
+                                <span><i class="fas fa-chart-line"></i> Market to reach $1B by 2026</span>
+                                <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline of Agricultural Innovation -->
+                    <div class="article">
+                        <h2>The Evolution of Farming Technology</h2>
+                        <p>Agricultural innovation has accelerated dramatically in recent decades. Here's a timeline showing how quickly farming is transforming:</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">10,000 BCE</div>
+                                <div class="timeline-content">
+                                    <h4>Agricultural Revolution</h4>
+                                    <p>Humans transition from hunting/gathering to cultivating crops and domesticating animals</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">1701</div>
+                                <div class="timeline-content">
+                                    <h4>Seed Drill Invented</h4>
+                                    <p>Jethro Tull's mechanical seed drill allows precise planting in rows</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">1834</div>
+                                <div class="timeline-content">
+                                    <h4>Mechanical Reaper</h4>
+                                    <p>McCormick's reaper dramatically increases harvesting efficiency</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">1940s</div>
+                                <div class="timeline-content">
+                                    <h4>Green Revolution Begins</h4>
+                                    <p>Synthetic fertilizers, pesticides, and high-yield varieties transform agriculture</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">1994</div>
+                                <div class="timeline-content">
+                                    <h4>First GMO Crops</h4>
+                                    <p>Flavr Savr tomato becomes first commercially grown genetically modified food</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">2013</div>
+                                <div class="timeline-content">
+                                    <h4>First Lab-Grown Burger</h4>
+                                    <p>Mark Post's $330,000 cultured beef burger demonstrates cellular agriculture</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">2020</div>
+                                <div class="timeline-content">
+                                    <h4>First CRISPR-Edited Crops</h4>
+                                    <p>Gene-edited crops enter commercial production in multiple countries</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-date">2023</div>
+                                <div class="timeline-content">
+                                    <h4>AI Farming Assistants</h4>
+                                    <p>Farmers begin using AI-powered decision support systems for daily operations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div class="article">
+                        <h2>The Future is Growing</h2>
+                        <p>As these technologies mature and scale, they promise to address agriculture's most pressing challenges: feeding a growing population, adapting to climate change, and reducing environmental impact. The farm of the future will be a connected, data-driven operation where plants and animals receive precisely what they need, when they need it—with minimal waste and maximal efficiency.</p>
+                        
+                        <div class="quote">
+                            "The next decade will see more change in agriculture than the past century combined. Farmers who embrace these technologies will lead the way in sustainable food production."
+                            <span class="quote-author">— Dr. Sarah Johnson, Agricultural Futurist</span>
+                        </div>
+                        
+                        <p>While challenges remain in cost, accessibility, and public acceptance, the trajectory is clear. The agricultural revolution of the 21st century is underway, blending cutting-edge technology with ecological wisdom to create a more sustainable and productive food system for all.</p>
+                        
+                        <div class="interactive-element" style="background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);">
+                            <h3>Ready to Explore These Technologies?</h3>
+                            <p>FAR-MER's platform helps farmers implement these future technologies today. Discover which solutions are right for your operation.</p>
+                            <button class="btn btn-primary" onclick="navigateToExplore()">
+                                <i class="fas fa-chart-line"></i> Explore Smart Farming Tools
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h3>About the Author</h3>
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" style="width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px; display: block;">
+                    <p style="text-align: center; font-weight: 600;">Dr. Sarah Johnson</p>
+                    <p>Agricultural technologist with 15 years of experience in future farming innovations. Former researcher at MIT Media Lab and current advisor to the USDA on emerging ag-tech.</p>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>Popular Tags</h3>
+                    <div class="popular-tags">
+                        <a href="#" class="tag">Vertical Farming</a>
+                        <a href="#" class="tag">Precision Ag</a>
+                        <a href="#" class="tag">Ag Robotics</a>
+                        <a href="#" class="tag">CRISPR</a>
+                        <a href="#" class="tag">Drones</a>
+                        <a href="#" class="tag">Blockchain</a>
+                        <a href="#" class="tag">Alternative Protein</a>
+                        <a href="#" class="tag">IoT</a>
+                        <a href="#" class="tag">Regenerative Ag</a>
+                        <a href="#" class="tag">3D Food Printing</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest updates on future farming technologies delivered to your inbox.</p>
+                    <form class="newsletter-form">
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>Related Articles</h3>
+                    <div class="future-card" style="margin-bottom: 15px;">
+                        <div class="future-card-content">
+                            <h4 style="font-size: 1rem;">How AI is Revolutionizing Small Farms</h4>
+                            <a href="#" class="read-more" style="font-size: 0.8rem;">Read Article</a>
+                        </div>
+                    </div>
+                    <div class="future-card" style="margin-bottom: 15px;">
+                        <div class="future-card-content">
+                            <h4 style="font-size: 1rem;">The Economics of Vertical Farming</h4>
+                            <a href="#" class="read-more" style="font-size: 0.8rem;">Read Article</a>
+                        </div>
+                    </div>
+                    <div class="future-card">
+                        <div class="future-card-content">
+                            <h4 style="font-size: 1rem;">Preparing Your Farm for Climate Change</h4>
+                            <a href="#" class="read-more" style="font-size: 0.8rem;">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" id="shareFab">
+        <i class="fas fa-share-alt"></i>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Share This Article</h3>
+                <button class="close-modal" onclick="closeShareModal()">&times;</button>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 20px; padding: 20px 0;">
+                <a href="#" style="color: #3b5998; font-size: 2rem;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: #1da1f2; font-size: 2rem;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color: #0077b5; font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="color: #25D366; font-size: 2rem;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div style="display: flex; margin-top: 20px;">
+                <input type="text" id="articleLink" value="https://far-mer.com/future-farming" style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px 0 0 4px;">
+                <button onclick="copyLink()" style="background: var(--primary); color: white; border: none; padding: 0 15px; border-radius: 0 4px 4px 0; cursor: pointer;">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add navigation bar dynamically
+        function addNavigationBar() {
+            const email = new URLSearchParams(window.location.search).get("email");
+            if (!email) {
+                console.error("No email parameter found");
+                window.location.href = "signin.html";
+                return;
+            }
+
+            const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
+            
+            const navBar = document.createElement('nav');
+            navBar.className = 'navbar';
+            navBar.innerHTML = `
+                <div class="nav-container">
+                    <a href="dashboard.html?email=${email}" class="nav-logo">
+                        <i class="fas fa-leaf"></i> FAR-MER
+                    </a>
+                    <div class="nav-links">
+                        <a href="dashboard.html?email=${email}" 
+                           class="nav-link ${currentPage === 'dashboard.html' ? 'active' : ''}">
+                           Dashboard
+                        </a>
+                        <a href="items.html?email=${email}" 
+                           class="nav-link ${currentPage === 'items.html' ? 'active' : ''}">
+                           My Products
+                        </a>
+                        <a href="explore.html?email=${email}" 
+                           class="nav-link ${currentPage === 'explore.html' ? 'active' : ''}">
+                           Explore
+                        </a>
+                        <a href="aboutus.html?email=${email}" 
+                           class="nav-link ${currentPage === 'aboutus.html' ? 'active' : ''}">
+                           About Us
+                        </a>
+                        <a href="blogs.html?email=${email}" 
+                           class="nav-link ${currentPage === 'blogs.html' ? 'active' : ''}">
+                           Blogs
+                        </a>
+                        <a href="signin.html" class="nav-link" onclick="logout()">
+                           Sign Out
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.body.insertBefore(navBar, document.body.firstChild);
+        }
+
+        // Quiz functionality
+        document.querySelectorAll('.quiz-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Show result
+                const resultDiv = this.closest('.quiz-container').querySelector('.quiz-result');
+                if (this.getAttribute('data-correct') === 'true') {
+                    resultDiv.textContent = 'Correct! Vertical farming uses up to 95% less water than traditional agriculture.';
+                    resultDiv.className = 'quiz-result correct';
+                } else {
+                    resultDiv.textContent = 'Not quite right. The correct answer is: Up to 95%. Vertical farming is extremely water efficient.';
+                    resultDiv.className = 'quiz-result incorrect';
+                }
+            });
+        });
+
+        // Share functionality
+        document.getElementById('shareFab').addEventListener('click', function() {
+            document.getElementById('shareModal').style.display = 'flex';
+        });
+
+        function closeShareModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        function copyLink() {
+            const linkInput = document.getElementById('articleLink');
+            linkInput.select();
+            document.execCommand('copy');
+            alert('Link copied to clipboard!');
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
+
+        // Navigation functions
+        function navigateToExplore() {
+            const email = new URLSearchParams(window.location.search).get("email");
+            if (email) {
+                window.location.href = explore.html?email=${email};
+            } else {
+                window.location.href = "signin.html";
+            }
+        }
+
+        function logout() {
+            // Here you would typically clear session/token
+            window.location.href = "signin.html";
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            addNavigationBar();
+            
+            // Animate elements when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.future-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

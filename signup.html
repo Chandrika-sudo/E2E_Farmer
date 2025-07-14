@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Sign Up</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>E2E Farming</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="home.html" class="link active">Home</a></li>
+                    <li><a href="blogs.html" class="link active">Blog</a></li>
+                    <li><a href="aboutus.html" class="link active">About</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn white-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="toggleMenu()"></i>
+            </div>
+        </nav>
+        <div class="form-box">
+            <div class="register-container">
+                <div class="top">
+                    <span>Have an account? <a href="signin.html">Login</a></span>
+                    <header>Sign Up</header>
+                </div>
+                <form id="registerForm">
+                    <div class="two-forms">
+                        <div class="input-box">
+                            <input type="text" class="input-field" placeholder="First Name" id="first-name" required>
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" class="input-field" placeholder="Last Name" id="last-name" required>
+                            <i class="bx bx-user"></i>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" class="input-field" placeholder="Email" id="email" required>
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="tel" class="input-field" placeholder="Phone Number" id="phone-number" required>
+                        <i class="bx bx-phone"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Location" id="location" required>
+                        <i class="bx bx-location-plus"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="number" class="input-field" placeholder="Farming Experience (Years)" id="farming-experience" required>
+                        <i class="bx bx-tractor"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Water Availability" id="water-availability" required>
+                        <i class="bx bx-water"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Past Crops" id="past-crops" required>
+                        <i class="bx bx-leaf"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Password" id="password" required>
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Register">
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="register-check" required>
+                            <label for="register-check"> I agree to the <span class="terms-link" onclick="viewTerms()">Terms & conditions</span></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById("navMenu");
+            navMenu.classList.toggle("responsive");
+        }
+        function viewTerms() {
+            // Open aboutus page in a new tab
+            window.open('aboutus.html', '_blank');
+            // Or to open in same tab:
+            // window.location.href = 'aboutus.html';
+            
+            // Optional: Automatically check the checkbox when terms are viewed
+            document.getElementById("register-check").checked = true;
+        }
+
+        document.getElementById("registerForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const userData = {
+        firstName: document.getElementById("first-name").value,
+        lastName: document.getElementById("last-name").value,
+        email: document.getElementById("email").value,
+        phoneNumber: document.getElementById("phone-number").value,
+        location: document.getElementById("location").value,
+        farmingExperience: document.getElementById("farming-experience").value,
+        waterAvailability: document.getElementById("water-availability").value,
+        pastCrops: document.getElementById("past-crops").value,
+        password: document.getElementById("password").value,
+    };
+
+    console.log("Sending registration request with:", userData); // Debugging log
+
+    try {
+        const response = await fetch('http://localhost:5000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        });
+
+        console.log("Response received:", response); // Debugging log
+
+        const result = await response.json();
+        console.log("Result from backend:", result); // Debugging log
+
+        if (response.ok) {
+            alert('Registration successful!'); // Show success alert
+            window.location.href = `dashboard.html?email=${userData.email}`; // Redirect to dashboard
+        } else {
+            alert(result.message || 'Registration failed'); // Show error alert
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred during registration'); // Show error alert
+    }
+});
+    </script>
+</body>
+</html>

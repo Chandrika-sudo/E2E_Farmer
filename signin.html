@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>E2E - Login</title>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>E2E Farming</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="home.html" class="link active">Home</a></li>
+                    <li><a href="blogs.html" class="link active">Blog</a></li>
+                    <li><a href="aboutus.html" class="link active">About</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn white-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="toggleMenu()"></i>
+            </div>
+        </nav>
+
+        <div class="form-box">
+            <div class="login-container">
+                <div class="top">
+                    <span>Don't have an account? <a href="signup.html">Sign Up</a></span>
+                    <header>Login</header>
+                </div>
+                <form id="loginForm">
+                    <div class="input-box">
+                        <input type="email" class="input-field" placeholder="Email" id="login-email" required>
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Password" id="login-password" required>
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" class="submit" value="Sign In">
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="login-check">
+                            <label for="login-check"> Remember Me</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">Forgot password?</a></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById("navMenu");
+            navMenu.classList.toggle("responsive");
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    console.log("Sending login request with:", { email, password }); // Debugging log
+
+    try {
+        const response = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        console.log("Response received:", response); // Debugging log
+
+        const result = await response.json();
+        console.log("Result from backend:", result); // Debugging log
+
+        if (result.success) {
+            alert('Login successful!'); // Show success alert
+            window.location.href = `dashboard.html?email=${email}`; // Redirect to dashboard
+        } else {
+            alert(result.message || 'Login failed'); // Show error alert
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred during login'); // Show error alert
+    }
+});
+    </script>
+</body>
+</html>
