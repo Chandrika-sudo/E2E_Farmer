@@ -1,11 +1,4 @@
-#E2E Farmer
-E2E_Farmer/
-├── client/ # Frontend code
-├── server/ # Backend code
-├── database/ # DB scripts or models
-├── public/ # Static assets
-├── README.md
-└── package.json
+
 The **E2E Farmer** project is a full-stack platform designed to empower farmers by providing an end-to-end digital experience — from land preparation to crop marketing. This platform brings together services like ploughing, product listing, order management, and payment integration in a unified system built for rural empowerment.
 
 ---
